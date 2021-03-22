@@ -15,10 +15,10 @@ def normalize_string(s):
     s = s.lower()
     s = ''.join(filter(lambda c: c in hatel.layout, s))
     s = " ".join(s.strip().split())
-    return s
+    return s + " "
 
-text = "i hate you, get away right now"
-text = normalize_string(text) + " "
+text = "i love this song"
+text = normalize_string(text)
 
 bkg = ColorClip(size=(600,600), color=[0, 0, 0])
 bkg = bkg.set_duration(len(text)/4 + .5)
