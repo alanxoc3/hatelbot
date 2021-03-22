@@ -3,18 +3,25 @@ from moviepy.editor import *
 from moviepy.video.VideoClip import *
 import numpy as np
 import numpy.random as rnd
+import hatel
 
 def create_note(freq):
     return lambda t: np.array([
-        np.sin(freq * 2 * np.pi * t),
-        np.sin(freq * 4 * np.pi * t)
+        np.sin(freq * 1 * np.pi * t),
+        np.sin(freq * 2 * np.pi * t)
     ]).T.copy(order="C")
 
+def normalize_string(s):
+    s = s.lower()
+    s = ''.join(filter(lambda c: c in hatel.layout, s))
+    s = " ".join(s.strip().split())
+    return s
 
-text = "what is up you?"
+text = "i hate you, get away right now"
+text = normalize_string(text) + " "
 
 bkg = ColorClip(size=(600,600), color=[0, 0, 0])
-bkg = bkg.set_duration(len(text)/4)
+bkg = bkg.set_duration(len(text)/4 + .5)
 
 clips = [bkg]
 audios = []
@@ -22,11 +29,11 @@ for i, letter in enumerate(text):
     duration = .25
     fps = 8
 
-    note = rnd.random_sample()*100
-    audio_frame = create_note(440 + 20 * i)
-    audio = AudioClip(audio_frame, duration=duration, fps=44100)
-    audio = audio.set_start(i*duration)
-    audios.append(audio)
+    for freq in hatel.layout[letter]:
+        audio = AudioClip(create_note(freq), duration=duration, fps=44100)
+        audio = afx.audio_fadeout(audio, duration)
+        audio = audio.set_start(i*duration)
+        audios.append(audio)
 
     txt_clip = TextClip(letter, fontsize=300, color='red')
     txt_clip = txt_clip.set_pos('center').set_fps(fps).set_duration(duration)
