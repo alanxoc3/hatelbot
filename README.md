@@ -12,3 +12,4 @@ A twitter bot hosted with GCP Cloud Functions that replies to tweets using the
 - tweepy (maybe)
 - moviepy
 - numpy
+- requests
