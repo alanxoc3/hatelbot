@@ -13,7 +13,7 @@ def run(tweet_text):
     videoTweet.tweet(tweet_text)
 
 def runGCP(request):
-    bot.run("Testing this musical tweet on GCP!")
+    run("Testing this musical tweet on GCP!")
     return "We processed your tweet!"
 
 if __name__ == "__main__":
