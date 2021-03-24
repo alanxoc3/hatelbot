@@ -1,5 +1,5 @@
-secrets.py
 __pycache__/
 *.mp4
 *.mp3
 virtualenv/
+setup_secrets.sh
