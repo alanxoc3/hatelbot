@@ -9,10 +9,10 @@ from requests_oauthlib import OAuth1
 MEDIA_ENDPOINT_URL = 'https://upload.twitter.com/1.1/media/upload.json'
 POST_TWEET_URL = 'https://api.twitter.com/1.1/statuses/update.json'
 
-oauth = OAuth1(os.getenv(C_KEY),
-    client_secret=os.getenv(C_SECRET),
-    resource_owner_key=os.getenv(A_TOKEN),
-    resource_owner_secret=os.getenv(A_TOKEN_SECRET))
+oauth = OAuth1(os.getenv("C_KEY"),
+    client_secret=os.getenv("C_SECRET"),
+    resource_owner_key=os.getenv("A_TOKEN"),
+    resource_owner_secret=os.getenv("A_TOKEN_SECRET"))
 
 class VideoTweet(object):
     def __init__(self, file_name):
